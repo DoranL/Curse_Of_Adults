@@ -1,1 +1,0 @@
-# Curse_Of_Adults

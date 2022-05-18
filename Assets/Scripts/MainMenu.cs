@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
+    
     public void GoToSettingsMenu()
     {
         optionScreen.SetActive(true);
@@ -29,7 +29,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit!");
         Application.Quit();
     }
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - FlythroughCam
+  - Enemy
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -13,12 +15,12 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Obstacles
   - Skybox
   - Player
   - PostProcessing
   - SetDressing
-  - 
+  - AllWalls
   - 
   - Vehicles
   - Navmesh

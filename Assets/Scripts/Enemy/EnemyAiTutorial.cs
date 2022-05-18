@@ -27,6 +27,10 @@ public class EnemyAiTutorial : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
+
+
+
     private void Awake()
     {
         player = GameObject.Find("Ber").transform;

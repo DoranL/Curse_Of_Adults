@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - FlythroughCam
-  - Enemy
+  - Shootable
   - Obstacles
+  - Enemy
+  - Teleport
+  - Collider
   layers:
   - Default
   - TransparentFX
@@ -14,33 +16,36 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - Obstacles
-  - Skybox
   - Player
-  - PostProcessing
-  - SetDressing
-  - AllWalls
-  - 
-  - Vehicles
-  - Navmesh
-  - Environment
-  - Characters
-  - Vegetation
-  - Effects
-  - Ragdoll
-  - WaterGeometry
-  - Terrain
   - Enemy
-  - Cameras
-  - Props
-  - Avoid
-  - CameraCollider
+  - Lighting
+  - Ground
+  - Postprocessing
   - Collider
-  - Checkpoint
-  - DoNotDraw
-  - Level
+  - Obstacles
+  - Teleport
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

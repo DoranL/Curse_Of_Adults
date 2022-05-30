@@ -4,46 +4,46 @@ using UnityEngine;
 
 public class animationStateController : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
 
-    int isWalkingHash;
-    int isRunningHash;
 
     void Start()
     {
         animator = GetComponent<Animator>();
 
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
+
     }
 
     void Update()
     {
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool forwardPressed = Input.GetKey("w");
-        bool runPressed = Input.GetKey("left shift");
 
-        //player press w key
-        if(!isWalking && forwardPressed)
-        {
-            animator.SetBool("isWalking", true);
-        }
+        animator.SetFloat("vertical", Input.GetAxis("Vertical"));
+        animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
+        //bool forwardPressed = Input.GetKey("w");
+        //bool runPressed = Input.GetKey("left shift");
 
-        //player not pressing w key
-        if(isWalking && !forwardPressed)
-        {
-            animator.SetBool("isWalking", false);
-        }
 
-        if(!isRunning && (forwardPressed && runPressed))
-        {
-            animator.SetBool("isRunning", true);
-        }
+        ////player press w key
+        //if (forwardPressed)
+        //{
+        //    animator.SetBool("isWalking", true);
+        //}
 
-        if(isRunning &&(!forwardPressed || !runPressed))
-        {
-            animator.SetBool("isRunning", false);
-        }
+        ////player not pressing w key
+        //if (!forwardPressed)
+        //{
+        //    animator.SetBool("isWalking", false);
+        //}
+
+        //if ((forwardPressed && runPressed))
+        //{
+        //    animator.SetBool("isRunning", true);
+        //}
+
+        //if ((!forwardPressed || !runPressed))
+        //{
+        //    animator.SetBool("isRunning", false);
+        //}
+
     }
 }

@@ -1636,6 +1636,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7774584316345234130}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1139592302 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5553891236877100683, guid: 9e7b1c5a88597e34a9f5202731458c57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7774584316345234130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162916551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,7 +4366,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7da16990d739c964bb7310709326de88, type: 2}
+      objectReference: {fileID: 9100000, guid: 606dd7907542e6e4aadb9bd2b5bd45b5, type: 2}
     - target: {fileID: 5606556904939193000, guid: 9e7b1c5a88597e34a9f5202731458c57,
         type: 3}
       propertyPath: m_Layer
@@ -4752,6 +4758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd2a8029362a484589666edcbe35fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &7774584317139647991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5066,9 +5073,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7774584317628284146}
+  animator: {fileID: 1139592302}
   cam: {fileID: 2722755758999518833}
   speed: 3
   turnSmoothTime: 0.001
+  turnSmoothVelocity: 0
   groundCheck: {fileID: 1343299068}
   groundMask:
     serializedVersion: 2

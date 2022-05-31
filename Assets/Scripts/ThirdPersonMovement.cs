@@ -34,6 +34,11 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool IsObstacle = false;
     public int index = 0;
 
+    //skill 3번  지금 추가적으로 베르가 방향을 전환할 때 벽이 z축이 고정되 동일한 위치에 계속해서 배치됨 베르가 방향키로 회전 시 
+    //베르의 Z축 방향이 방향키로 회전하지 않더라도 회전을 인식하고 그에 맞는 위치에 벽 생성 기능 필요
+    public GameObject wallPrefab;
+    public List<GameObject> wallDestroy = new List<GameObject>();
+
     private void Start()
     {
         CinemachineCore.GetInputAxis = GetAxisCustom;
@@ -64,18 +69,35 @@ public class ThirdPersonMovement : MonoBehaviour
                 animator.SetBool("isRun", true);
                 animator.SetBool("isWalk", false);
             }
-            else
+            if (!(Input.GetKey(KeyCode.LeftShift)) && !(Input.GetKey(KeyCode.RightShift)))
             {
                 animator.SetBool("isRun", false);
                 animator.SetBool("isWalk", true);
             }
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetBool("isWalk", true);
+                animator.SetBool("isThrow", false);
+                Invoke("ThrowFalse", 1.5f);
+            }
         }
         else
         {
-            animator.SetBool("isRun", false);
-            animator.SetBool("isWalk", false);
+            if(Input.GetMouseButtonDown(0))
+            {
+                animator.SetBool("isThrow", true);
+                Invoke("ThrowFalse", 1.5f);  //1.5초 뒤에 ThrowFalse 함수 실행
+                animator.SetBool("isWalk", false);
+            }
+            if(!(Input.GetMouseButtonDown(0)))
+            {
+                animator.SetBool("isRun", false);
+                animator.SetBool("isWalk", false);
+            }
         }
 
+        
+        
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -134,15 +156,11 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        ////Skill 2
-        //if ((Input.GetKeyDown(KeyCode.Keypad2) || (Input.GetKeyDown(KeyCode.Alpha2)){
-            
-        //}
-        //teleportInRange = Physics.CheckSphere(transform.position, changeRange, Teleport);
-        //if (teleportInRange)
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //}
+        //Skill 3 일정거리 뒤에 벽 설치하기
+        if ((Input.GetKeyDown(KeyCode.Keypad3) || (Input.GetKeyDown(KeyCode.Alpha3)))){
+            InstallBlock();
+        }
+        
         if (IsObstacle)
         {
             spanTime += Time.deltaTime;
@@ -155,6 +173,27 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
         
+    }
+    void InstallBlock()
+    {
+        Vector3 wallPosition = new Vector3(transform.position.x, transform.position.y-2.0f, transform.position.z+3.0f);
+        Quaternion wallRotation = Quaternion.identity;
+        wallRotation.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y+90.0f, transform.rotation.z);
+        GameObject wall = Instantiate(wallPrefab, wallPosition, wallRotation);
+        wallDestroy.Add(wall);
+        Invoke("DestroyBlock", 3f);
+    }
+
+
+    public void DestroyBlock()
+    {
+        Destroy(wallDestroy[0]);
+        wallDestroy.RemoveAt(0);
+    }
+
+    public void ThrowFalse()
+    {
+        animator.SetBool("isThrow", false);
     }
 
     public float GetAxisCustom(string axisName) //클릭 카메라

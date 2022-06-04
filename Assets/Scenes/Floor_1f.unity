@@ -6947,7 +6947,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213221667}
-  m_LocalRotation: {x: 0.14517984, y: -0.028488576, z: 0.0041820277, w: 0.98898625}
+  m_LocalRotation: {x: 0.14517985, y: -0.028488591, z: 0.00418203, w: 0.98898625}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -64450,6 +64450,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: -1.2, y: 3.0000002, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1849987929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849987924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc1c77050354e8478b1ee819e4bc679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1850826135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 199380, guid: 2e85e654d9d08b54294966420d8a2155,

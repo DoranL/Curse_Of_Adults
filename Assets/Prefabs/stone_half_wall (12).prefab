@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 2643044457989358227}
   - component: {fileID: 2643044457990428943}
   - component: {fileID: 2643044457992571942}
+  - component: {fileID: 942334977829672607}
+  - component: {fileID: 8653645333443527929}
   m_Layer: 11
   m_Name: stone_half_wall (12)
-  m_TagString: Untagged
+  m_TagString: Target(T)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,8 +92,36 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2643044457992650875}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4, y: 6, z: 2.4}
-  m_Center: {x: -1.2000008, y: 3, z: -0.00000011920929}
+  m_Size: {x: 4.0731883, y: 5.9999995, z: 2.4}
+  m_Center: {x: -1.1034992, y: 2.9999998, z: -0.00000015258448}
+--- !u!114 &942334977829672607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643044457992650875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc1c77050354e8478b1ee819e4bc679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &8653645333443527929
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643044457992650875}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

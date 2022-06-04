@@ -6,13 +6,13 @@ public class GrenadeThrower : MonoBehaviour
 {
     private float throwForce = 20f;
     public GameObject grenadePrefab;
+    public GameObject player;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !player.GetComponent<ThirdPersonMovement>().isPressThree)
         {
             Invoke("ThrowGrenade", 0.4f);
-            
         }
     }
 

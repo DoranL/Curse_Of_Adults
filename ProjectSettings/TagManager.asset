@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Teleport
   - Collider
+  - Target(T)
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Collider
   - Obstacles
   - Teleport
-  - 
+  - Ceil
   - 
   - 
   - 

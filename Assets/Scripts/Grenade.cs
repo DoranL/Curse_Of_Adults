@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-
     public float delay = 5.0f;
     public float radius = 5f;
 
@@ -28,9 +27,9 @@ public class Grenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;   /////// 물체를 던지고 시간초 초과거나 폭발 상태가 아니면서 스킬키인 2를 눌럿을경우 폭발 근데 딜레이를 아무리 길게 줘도 똑같이 끝남
+        countdown -= Time.deltaTime;
 
-        if (countdown <= 0f ||( !hasExploded && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha2))))
+        if (countdown <= 0f ||( !hasExploded && (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))))
         {
             Explode();
             countdown = 0;
@@ -49,16 +48,19 @@ public class Grenade : MonoBehaviour
                 {
                     if (colls[i].name.Contains("Agile"))
                     {
-                       
+                       //댜른 스크립트 접근 방법 1. 접근하고 싶은 스크립트를 가지고 있는 오브젝트를 가져오고(애자일) getcomponent를 통해 스크립트에 접근
                         GameObject target = colls[i].gameObject;
                         target.GetComponent<EnemyAiTutorial>().EnemySlow(9.0f);
+                        target.GetComponent<EnemyAiTutorial>().animator.SetBool("isWalk", false);
+                        target.GetComponent<EnemyAiTutorial>().hitGrenade = true;
+                        
                     }
                 }
             }
         }
     }
 
-    
+    //수류탄 가져오고 폭발하는 함수
     void Explode()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);

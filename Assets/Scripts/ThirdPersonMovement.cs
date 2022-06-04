@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
+    //public Camera CM;
     public CharacterController controller;
     public Animator animator;
 
@@ -19,6 +20,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public float groundDistance;
     private Vector3 velocity;
     private bool isGrounded;
+
 
     //Skill 1번 serach change possible object
     public LayerMask Obstacles;
@@ -38,6 +40,12 @@ public class ThirdPersonMovement : MonoBehaviour
     //베르의 Z축 방향이 방향키로 회전하지 않더라도 회전을 인식하고 그에 맞는 위치에 벽 생성 기능 필요
     public GameObject wallPrefab;
     public List<GameObject> wallDestroy = new List<GameObject>();
+    //skill 3번 벽 설치 후 원하는 장소에 배치
+    private Vector3 mOffset;
+    private float mZCoord;
+    public GameObject blockWallPrefab;
+    //3번 키를 눌렀는지 확인
+    public bool isPressThree;
 
     private void Start()
     {
@@ -155,11 +163,6 @@ public class ThirdPersonMovement : MonoBehaviour
                 }
             }
         }
-
-        //Skill 3 일정거리 뒤에 벽 설치하기
-        if ((Input.GetKeyDown(KeyCode.Keypad3) || (Input.GetKeyDown(KeyCode.Alpha3)))){
-            InstallBlock();
-        }
         
         if (IsObstacle)
         {
@@ -173,14 +176,31 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
         
+        if(Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            isPressThree = true;
+            InstallBlock();
+            Invoke("IsNotPressThree", 10f);
+        }
+        //if (isPressThree && Input.GetMouseButton(0))
+        //{
+        //    OnMouseDown();
+        //    OnMouseDrag();
+        //}
     }
+
+    public void IsNotPressThree()
+    {
+        isPressThree = false;
+    }
+
     void InstallBlock()
     {
         Vector3 wallPosition = new Vector3(transform.position.x, transform.position.y-2.0f, transform.position.z+3.0f);
         Quaternion wallRotation = Quaternion.identity;
         wallRotation.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y+90.0f, transform.rotation.z);
-        GameObject wall = Instantiate(wallPrefab, wallPosition, wallRotation);
-        wallDestroy.Add(wall);
+        blockWallPrefab = Instantiate(wallPrefab, wallPosition, wallRotation);
+        wallDestroy.Add(blockWallPrefab);
         Invoke("DestroyBlock", 3f);
     }
 
@@ -190,6 +210,26 @@ public class ThirdPersonMovement : MonoBehaviour
         Destroy(wallDestroy[0]);
         wallDestroy.RemoveAt(0);
     }
+
+    //private void OnMouseDown()
+    //{
+    //    mZCoord = CM.WorldToScreenPoint(blockWallPrefab.transform.position).z;
+    //    mOffset = blockWallPrefab.transform.position - GetMouseWorldPos();
+    //}
+
+    //private Vector3 GetMouseWorldPos()
+    //{
+    //    Vector3 mousePoint = Input.mousePosition;
+
+    //    mousePoint.z = mZCoord;
+
+    //    return CM.ScreenToWorldPoint(mousePoint);
+    //}
+
+    //private void OnMouseDrag()
+    //{
+    //    blockWallPrefab.transform.position = GetMouseWorldPos() + mOffset;
+    //}
 
     public void ThrowFalse()
     {

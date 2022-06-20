@@ -14,7 +14,9 @@ public class EnemyAiTutorial : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-
+    //projectile 공격 설정
+    public GameObject projectile;
+    public Transform projectilePoint;
 
     //clone 활성화 비활성화
     public GameObject[] cloneList;
@@ -56,6 +58,9 @@ public class EnemyAiTutorial : MonoBehaviour
 
     public bool hitGrenade = false;
 
+
+    public GameObject canThrow;
+
     private void Awake() //게임 실행 전 수행
     {
         m_CurrentWaypointIndex = 0;
@@ -84,8 +89,8 @@ public class EnemyAiTutorial : MonoBehaviour
 
         if (canAttackPlayer)
         {
-            Invoke("AttackPlayer", 0.4f);
-            Debug.Log("공격");
+            Invoke("AttackPlayer", 0.1f);
+            
         }
     }
 
@@ -160,11 +165,22 @@ public class EnemyAiTutorial : MonoBehaviour
             canAttackPlayer = false;
     }
 
+    //projectile
+    //public void Shoot()
+    //{
+    //    Rigidbody rb = Instantiate(projectile, projectilePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+    //    rb.AddForce(transform.forward * 30f, ForceMode.Impulse);
+    //    rb.AddForce(transform.up * 7, ForceMode.Impulse);
+    //}
     public void CloneMaker()
     {
-        Instantiate(cloudEffect, transform.position, transform.rotation);
-        cloneList[1].SetActive(true);
-        cloneList[2].SetActive(true);
+        if (!(gameObject.name.Contains("Feathers")))
+        {
+            Instantiate(cloudEffect, transform.position, transform.rotation);
+            cloneList[1].SetActive(true);
+            cloneList[2].SetActive(true);
+        }
+        
     }
 
     private void Patroling()
@@ -231,18 +247,20 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void AttackPlayer()
     {
-        
         agent.SetDestination(transform.position);// 플레이어가 공격 범위에 들어오고 공격할 때 enemy 위치 고정
 
         transform.LookAt(player);
 
         animator.SetBool("isWalk", false);
-        
+ 
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
             animator.SetBool("isAttack", true);
-            Invoke("StopAttackAnimation", 4f);
+
+            canThrow.GetComponent<EnemyThrower>().Invoke("EnemyThrowGrenade", 0.5f);
+
+            Invoke("StopAttackAnimation", 3f);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -251,13 +269,11 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         animator.SetBool("isAttack", false);
     }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
-
     }
-
-
 
     private void OnDrawGizmosSelected()
     {

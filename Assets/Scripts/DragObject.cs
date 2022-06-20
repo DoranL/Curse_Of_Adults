@@ -9,7 +9,7 @@ public class DragObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; //화면 좌표값을 mZCoord 안에 넣고
         mOffset = gameObject.transform.position - GetMouseWorldPos();
     }
 

@@ -129,10 +129,10 @@ MonoBehaviour:
   delay: 5
   radius: 5
   force: 200
-  explosionEffect: {fileID: 1269120730060968, guid: 1a365141225c22e49a7bb976869b22a8,
+  explosionEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
     type: 3}
   Enemy:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4096
   slowRange: 7
   isSlowRange: 0

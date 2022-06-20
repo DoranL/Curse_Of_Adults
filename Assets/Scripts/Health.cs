@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Health : MonoBehaviour
 {
     public int health;
@@ -11,32 +13,37 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    private void Start()
+    {
+        numOfHearts = 3;
+    }
+
     void Update()
     {
-        if(health > numOfHearts)
-        {
-            health = numOfHearts;
-        }
+        
+    }
+
+
+    public void DecreaseHeart()
+    {
+        numOfHearts -= 1;
         
         for (int i = 0; i < hearts.Length; i++)
         {
-            if(i < health)
+            if (i < numOfHearts)
             {
                 hearts[i].sprite = fullHeart;
+                hearts[i].enabled = true;
             }
             else
             {
                 hearts[i].sprite = emptyHeart;
             }
-
-            if (i<numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            /////////////////////////////////////¾À ÀüÈ¯ ³ªÁß¿¡ ²À Å°¼À
+            //if(numOfHearts == 0)
+            //{
+            //    SceneManager.LoadScene(3);
+            //}
         }
     }
 }

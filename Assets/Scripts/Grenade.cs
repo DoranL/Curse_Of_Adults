@@ -35,25 +35,23 @@ public class Grenade : MonoBehaviour
             countdown = 0;
             hasExploded = true;
         }
-
         
         isSlowRange = Physics.CheckSphere(transform.position, slowRange, Enemy);
         if (isSlowRange)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, slowRange);
 
-            for(int i =0; i<colls.Length; i++)
+            for(int i = 0; i < colls.Length; i++)
             {
                 if (colls[i].tag == "Enemy" && hasExploded)
                 {
-                    if (colls[i].name.Contains("Agile"))
+                    if (colls[i].name.Contains("Agile")) 
                     {
                        //댜른 스크립트 접근 방법 1. 접근하고 싶은 스크립트를 가지고 있는 오브젝트를 가져오고(애자일) getcomponent를 통해 스크립트에 접근
                         GameObject target = colls[i].gameObject;
-                        target.GetComponent<EnemyAiTutorial>().EnemySlow(9.0f);
+                        target.GetComponent<EnemyAiTutorial>().EnemySlow(9.0f);  //target 스크립트를 가져와서 속도 제한
                         target.GetComponent<EnemyAiTutorial>().animator.SetBool("isWalk", false);
                         target.GetComponent<EnemyAiTutorial>().hitGrenade = true;
-                        
                     }
                 }
             }
@@ -74,10 +72,7 @@ public class Grenade : MonoBehaviour
             {
                 rb.AddExplosionForce(force, transform.position, radius);
             }
-        }
-        
+        }       
         Destroy(gameObject);
     }
-
-    
 }

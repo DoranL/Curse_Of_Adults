@@ -4,12 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Shootable
-  - Obstacles
-  - Enemy
-  - Teleport
   - Collider
+  - Teleport
+  - Enemy
+  - Obstacles
   - Target(T)
+  - Door
+  - TextDoor
   layers:
   - Default
   - TransparentFX
@@ -17,18 +18,18 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - 
+  - PostProcessing
+  - 
+  - FirstPersonWeapon
   - Player
   - Enemy
-  - Lighting
-  - Ground
-  - Postprocessing
-  - Collider
   - Obstacles
+  - Ground
+  - Collider
   - Teleport
-  - Ceil
-  - 
-  - 
-  - 
+  - Door
   - 
   - 
   - 
@@ -44,9 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Fire
-    uniqueID: 3804908061
+  - name: Background
+    uniqueID: 788040023
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 3922283465
     locked: 0
